@@ -7,6 +7,9 @@ pygame.init()
 
 laserSound = pygame.mixer.Sound("sounds/laser.ogg")
 
+pygame.mixer.music.load("sounds/bgMusic.ogg")
+pygame.mixer.music.play(-1,0.0)
+
 black = (0, 0, 0)
 white = (255, 255, 255)
 space = (0, 76, 153)
@@ -210,6 +213,7 @@ def game_intro():
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    pygame.mixer.music.stop()
                     return
                 if event.key == pygame.K_q:
                     end_game()
