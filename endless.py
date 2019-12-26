@@ -6,6 +6,8 @@ pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.init()
 
 laserSound = pygame.mixer.Sound("sounds/laser.ogg")
+pausesound  = pygame.mixer.Sound("sounds/pause.ogg")
+restartsound = pygame.mixer.Sound("sounds/restart.ogg")
 
 pygame.mixer.music.load("sounds/bgMusic.ogg")
 pygame.mixer.music.play(-1,0.0)
@@ -186,10 +188,12 @@ def text_sizer(surf, text, size, x, y):
     surf.blit(textsurf, textrect)
 
 def unpause():
+    pygame.mixer.Sound.play(restartsound)
     global pause
     pause=False
 
 def paused():
+    pygame.mixer.Sound.play(pausesound)
     while pause:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
